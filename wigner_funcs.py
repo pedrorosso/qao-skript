@@ -1,5 +1,5 @@
 from numpy import linspace, amax, amin
-from matplotlib.pyplot import figure, subplots, show
+from matplotlib.pyplot import figure
 from mpl_toolkits.axes_grid1 import ImageGrid
 from qutip import fock_dm, qobj, basis, displace
 from qutip.wigner import wigner, qfunc
@@ -33,11 +33,11 @@ def generate_wigner_plots(rho_fock: qobj,
         m = max(-amin(zm), amax(zm))
         
         plt1 = ax.contourf(xvec, xvec, zm, zlevels, cmap="seismic")
-        ax.set_xlabel("Q")
+        ax.set_xlabel("I")
         ax.set_aspect(1)
 
     grid.cbar_axes[0].colorbar(plt1)
-    grid[0].set_ylabel("I")
+    grid[0].set_ylabel("Q")
     grid[0].set_title("Fock state $\\left|3\\right>$")
     grid[1].set_title("Coherent state\n$\\alpha = 2 + 2i$")
     grid[2].set_title("Even cat state\n$\\alpha = 2 + 2i$")
@@ -75,11 +75,11 @@ def generate_husimi_plots(rho_fock: qobj,
         m = max(-amin(zm), amax(zm))
         
         plt1 = ax.contourf(xvec, xvec, zm, zlevels, cmap="seismic")
-        ax.set_xlabel("Q")
+        ax.set_xlabel("I")
         ax.set_aspect(1)
 
     grid.cbar_axes[0].colorbar(plt1)
-    grid[0].set_ylabel("I")
+    grid[0].set_ylabel("Q")
     grid[0].set_title("Fock state $\\left|3\\right>$")
     grid[1].set_title("Coherent state\n$\\alpha = 2 + 2i$")
     grid[2].set_title("Even cat state\n$\\alpha = 2 + 2i$")
