@@ -43,7 +43,7 @@ def generate_wigner_plots(rho_fock: qobj,
     grid[2].set_title("Even cat state\n$\\alpha = 2 + 2i$")
     
     fig.tight_layout()
-    fig.savefig(fname=f"./img/02_WignerFuncs.pdf")
+    fig.savefig(fname=f"./img/WignerFuncs.pdf")
 
 
 def generate_husimi_plots(rho_fock: qobj,
@@ -85,7 +85,7 @@ def generate_husimi_plots(rho_fock: qobj,
     grid[2].set_title("Even cat state\n$\\alpha = 2 + 2i$")
     
     fig.tight_layout()
-    fig.savefig(fname=f"./img/02_HusimiQfuncs.pdf")
+    fig.savefig(fname=f"./img/HusimiQfuncs.pdf")
 
 
 def generate_wigner_husimi():

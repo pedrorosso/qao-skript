@@ -57,9 +57,9 @@ def surface_plotter(material: dict, n_theta: int = 1001, fname : str = 'test'):
 
 
 def plot_all_slowness_surfs():
-    surface_plotter(material=D_LiNb03, n_theta=1000, fname='img/03_LiNBO3')
-    surface_plotter(material=D_Sapphire, n_theta=1000, fname='img/03_Sapphire')
-    surface_plotter(material=D_AlN, n_theta=1000, fname='img/03_AlN')
+    surface_plotter(material=D_LiNb03, n_theta=1000, fname='img/LiNBO3')
+    surface_plotter(material=D_Sapphire, n_theta=1000, fname='img/Sapphire')
+    surface_plotter(material=D_AlN, n_theta=1000, fname='img/AlN')
 
 if __name__ == "__main__":
     plot_all_slowness_surfs()
