@@ -1,6 +1,7 @@
 from schemdraw import Drawing
-from schemdraw.elements import Annotate, Capacitor, EncircleBox, Inductor, Line
+from schemdraw.elements import Annotate, Capacitor, EncircleBox, Inductor, Line, Label
 from schemdraw.elements.twoterm import Josephson
+from schemdraw.elements.lines import LoopCurrent
 
 
 def draw_capacitive_coupler() -> None:
@@ -35,5 +36,51 @@ def draw_capacitive_coupler() -> None:
         d.save(fname="img/SC_Capacitive.png", dpi=600)
 
 
-if __name__ == "__main__":
+def draw_squid_diagram() -> None:
+
+    with Drawing() as d:
+
+        d.config(unit=3)
+        d += (LeftLine := Line().up(3))
+        d += (TopJJ := Josephson().right().label(r"$I_1 \ \rightarrow$", "top"))
+        d += (RightLine := Line().down(3))
+        d += (BottomJJ := Josephson().left().label(r"$I_2 \ \rightarrow$", "bottom"))
+
+        d += Line().at(LeftLine.center).left(1.5).label(r"$I \ \rightarrow$", "top")
+        d += Line().right(1.5).at(RightLine.center)
+        d += LoopCurrent(elm_list=[TopJJ, RightLine, BottomJJ, LeftLine],
+                         direction="ccw",
+                         theta1=150,
+                         theta2=210).label(label=r"$I_S$", ofst=(-0.8, 0.0))
+        RightLine.add_label(label="\u2299 B", color="Blue", loc="top", size=20)
+
+        d.save(fname="img/SQUID.png", dpi=600)
+
+
+def freq_tunable_transmon():
+
+    with Drawing() as d:
+
+        d.config(unit=2)
+        d += (TopLine := Line().right(2))
+        d += Josephson().down()
+        d += Line().left(2)
+        d += Josephson().up()
+
+        d += Line().up(0.5).at(TopLine.center)
+        d += Line().right(4)
+        d += Capacitor().down(3)
+        d += Line().left(4)
+        d += Line().up(0.5)
+
+        d.save(fname="img/FreqTunableTransmon.png", dpi=600)
+
+
+def draw_all_circuits():
     draw_capacitive_coupler()
+    draw_squid_diagram()
+    freq_tunable_transmon()
+
+
+if __name__ == "__main__":
+    draw_all_circuits()
